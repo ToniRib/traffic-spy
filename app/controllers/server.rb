@@ -20,7 +20,14 @@ module TrafficSpy
         status 400
         body application.errors.full_messages
       end
+    end
 
+    post '/sources/:id/data' do |id|
+      if params[:payload] 
+      else 
+        status 400
+        body "Payload can't be blank"
+      end 
     end
 
     not_found do
