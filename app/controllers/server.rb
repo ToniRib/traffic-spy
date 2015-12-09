@@ -22,6 +22,7 @@ module TrafficSpy
       else
         parsed_string = TrafficSpy::ProcessRequestParser.new.parse_request(params[:payload])
         app = TrafficSpy::Application.find_by(identifier: id)
+        binding.pry
         payload = app.payloads.new(parsed_string)
         if payload.save
           status 200

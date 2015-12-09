@@ -1,3 +1,5 @@
-class RelativePath < ActiveRecord::Base
-  has_many :application_relative_paths
+module TrafficSpy
+  class RelativePath < ActiveRecord::Base
+    has_many :application_relative_paths
+  end
 end
