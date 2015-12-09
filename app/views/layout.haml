@@ -1,15 +1,14 @@
 %html
-  %head 
+  %head
     %link{:href => "http://fonts.googleapis.com/icon?family=Material+Icons", :rel => "stylesheet"}
     %link{:href => "/css/materialize.min.css", :type => "text/css", :rel => "stylesheet", :media => "screen,projection"}
     %link{:href => "https://fonts.googleapis.com/css?family=Indie+Flower", :rel => 'stylesheet', :type =>'text/css'}
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-    %link{:rel => "stylesheet", :href => "/custom.css"}
+    %link{:rel => "stylesheet", :href => "/css/custom.css"}
     %link{:href => 'https://fonts.googleapis.com/css?family=Questrial', :rel => 'stylesheet', :type => 'text/css'}
     %title TrafficSpy Analytics
   %body
-    = yield 
-    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"}
+    = yield
+    -# %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"}
     %script{:type => "text/javascript", :src =>"https://code.jquery.com/jquery-2.1.1.min.js"}
     %script{:type => "text/javascript", :src => "/js/materialize.min.js"}
-  

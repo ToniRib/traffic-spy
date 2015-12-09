@@ -1,7 +1,9 @@
-%h3
-  %li Longest Response Time: "#{}"
-  %li Shortest Response Time: "#{}"
-  %li Average Response Time: "#{}"
-  %li HTTP Verbs: "#{}"
-  %li Popular Referrers "#{}"
-  %li Popular User Agents "#{}"
+%h3= @app.identifier
+
+%h5 Most requested URLs:
+
+%ol
+  -@app.payloads.group(:relative_path).count.each do |k, v|
+    %li
+      = k
+      = v

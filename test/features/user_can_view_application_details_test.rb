@@ -1,12 +1,4 @@
-# As as registered user,
-# When I visit '/sources/MY_ID',
-# Then I see the most requested URLS to least requested URLS (url),
-# And I see web browser breakdown across all requests (userAgent),
-# And I see OS breakdown across all requests (userAgent),
-# And I see screen Resolution across all requests (resolutionWidth x resolutionHeight),
-# And I see the longest, average response time per URL to shortest, average response time per URL
-# And I see hyperlinks of each url to view url specific data,
-# And I see hyperlink to view aggregate event data
+
 
 class UserCanViewApplicationDetailsTest < FeatureTest
   def register_turing_and_send_multiple_payloads
@@ -102,10 +94,17 @@ class UserCanViewApplicationDetailsTest < FeatureTest
 
   def test_user_can_view_details_for_a_registered_application
     register_turing_and_send_multiple_payloads
-    binding.pry
 
     visit '/sources/turing'
 
+    # Then I see the most requested URLS to least requested URLS (url),]
+      
+    # And I see web browser breakdown across all requests (userAgent),
+    # And I see OS breakdown across all requests (userAgent),
+    # And I see screen Resolution across all requests (resolutionWidth x resolutionHeight),
+    # And I see the longest, average response time per URL to shortest, average response time per URL
+    # And I see hyperlinks of each url to view url specific data,
+    # And I see hyperlink to view aggregate event data
 
   end
 
