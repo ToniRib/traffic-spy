@@ -10,7 +10,7 @@ class UserCanViewApplicationURLStatisticsTest < FeatureTest
       request_type_string:"GET",
       event: "socialLoginB",
       operating_system_string: "Macintosh",
-      browser: "Mozilla",
+      browser_string: "Mozilla",
       resolution_string: {width: "1366", height: "768"},
       ip_address:"63.29.38.211"
     }
@@ -22,7 +22,7 @@ class UserCanViewApplicationURLStatisticsTest < FeatureTest
       request_type_string:"GET",
       event: "socialLoginB",
       operating_system_string: "Macintosh",
-      browser: "Mozilla",
+      browser_string: "Mozilla",
       resolution_string: {width: "1366", height: "768"},
       ip_address:"63.29.38.211"
     }
@@ -34,7 +34,7 @@ class UserCanViewApplicationURLStatisticsTest < FeatureTest
       request_type_string:"POST",
       event: "socialLoginB",
       operating_system_string: "Windows",
-      browser: "Mozilla",
+      browser_string: "Mozilla",
       resolution_string: {width: "1366", height: "768"},
       ip_address:"63.29.38.211"
     }
@@ -46,7 +46,7 @@ class UserCanViewApplicationURLStatisticsTest < FeatureTest
       request_type_string:"POST",
       event: "socialLoginB",
       operating_system_string: "Windows",
-      browser: "Mozilla",
+      browser_string: "Mozilla",
       resolution_string: {width: "1366", height: "768"},
       ip_address:"63.29.38.211"
     }
@@ -58,7 +58,7 @@ class UserCanViewApplicationURLStatisticsTest < FeatureTest
       request_type_string:"PUT",
       event: "socialLoginB",
       operating_system_string: "RedHat",
-      browser: "Mozilla",
+      browser_string: "Mozilla",
       resolution_string: {width: "1366", height: "768"},
       ip_address:"63.29.38.211"
     }
@@ -70,7 +70,7 @@ class UserCanViewApplicationURLStatisticsTest < FeatureTest
       request_type_string:"DELETE",
       event: "socialLoginB",
       operating_system_string: "Ubuntu",
-      browser: "Mozilla",
+      browser_string: "Mozilla",
       resolution_string: {width: "1366", height: "768"},
       ip_address:"63.29.38.211"
     }
@@ -86,6 +86,8 @@ class UserCanViewApplicationURLStatisticsTest < FeatureTest
       resolution = TrafficSpy::Resolution.find_or_create_by(width: data[:resolution_string][:width],
                                                             height: data[:resolution_string][:height])
       operating_system = TrafficSpy::OperatingSystem.find_or_create_by(op_system: data[:operating_system_string])
+      browser = TrafficSpy::Browser.find_or_create_by(browser_name: data[:browser_string])
+      data[:browser_id] = browser.id
       data[:operating_system_id] = operating_system.id
       data[:resolution_id] = resolution.id
       data[:relative_path_id] = rel_path.id

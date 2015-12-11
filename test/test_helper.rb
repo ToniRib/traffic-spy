@@ -43,7 +43,7 @@ class ModelTest < Minitest::Test
       request_type_string:"GET",
       event: "socialLoginC",
       operating_system_string: "Macintosh",
-      browser: "Chrome",
+      browser_string: "Chrome",
       resolution_string: {width: "1920", height: "1280"},
       ip_address:"63.29.38.211"
     }
@@ -56,7 +56,7 @@ class ModelTest < Minitest::Test
       request_type_string:"GET",
       event: "socialLoginA",
       operating_system_string: "Macintosh",
-      browser: "Safari",
+      browser_string: "Safari",
       resolution_string: {width: "600", height: "800"},
       ip_address:"63.29.38.211"
     }
@@ -69,7 +69,7 @@ class ModelTest < Minitest::Test
       request_type_string:"POST",
       event: "socialLoginA",
       operating_system_string: "Windows",
-      browser: "IE10",
+      browser_string: "IE10",
       resolution_string: {width: "1920", height: "1280"},
       ip_address:"63.29.38.211"
     }
@@ -82,7 +82,7 @@ class ModelTest < Minitest::Test
       request_type_string:"GET",
       event: "socialLoginB",
       operating_system_string: "Windows",
-      browser: "Chrome",
+      browser_string: "Chrome",
       resolution_string: {width: "1920", height: "1080"},
       ip_address:"63.29.38.211"
     }
@@ -95,7 +95,7 @@ class ModelTest < Minitest::Test
       request_type_string:"GET",
       event: "socialLoginB",
       operating_system_string: "Macintosh",
-      browser: "Chrome",
+      browser_string: "Chrome",
       resolution_string: {width: "1920", height: "1280"},
       ip_address:"63.29.38.211"
     }
@@ -108,7 +108,7 @@ class ModelTest < Minitest::Test
       request_type_string:"GET",
       event: "socialLoginB",
       operating_system_string: "Macintosh",
-      browser: "Mozilla",
+      browser_string: "Mozilla",
       resolution_string: {width: "1366", height: "768"},
       ip_address:"63.29.38.211"
     }
@@ -124,6 +124,8 @@ class ModelTest < Minitest::Test
       resolution = TrafficSpy::Resolution.find_or_create_by(width: data[:resolution_string][:width],
                                                             height: data[:resolution_string][:height])
       operating_system = TrafficSpy::OperatingSystem.find_or_create_by(op_system: data[:operating_system_string])
+      browser = TrafficSpy::Browser.find_or_create_by(browser_name: data[:browser_string])
+      data[:browser_id] = browser.id
       data[:operating_system_id] = operating_system.id
       data[:resolution_id] = resolution.id
       data[:relative_path_id] = rel_path.id
@@ -148,7 +150,7 @@ class FeatureTest < Minitest::Test
       request_type_string:"GET",
       event: "socialLoginC",
       operating_system_string: "Macintosh",
-      browser: "Chrome",
+      browser_string: "Chrome",
       resolution_string: {width: "1920", height: "1280"},
       ip_address:"63.29.38.211"
     }
@@ -161,7 +163,7 @@ class FeatureTest < Minitest::Test
       request_type_string:"GET",
       event: "socialLoginA",
       operating_system_string: "Macintosh",
-      browser: "Safari",
+      browser_string: "Safari",
       resolution_string: {width: "600", height: "800"},
       ip_address:"63.29.38.211"
     }
@@ -174,7 +176,7 @@ class FeatureTest < Minitest::Test
       request_type_string:"POST",
       event: "socialLoginA",
       operating_system_string: "Windows",
-      browser: "IE10",
+      browser_string: "IE10",
       resolution_string: {width: "1920", height: "1280"},
       ip_address:"63.29.38.211"
     }
@@ -187,7 +189,7 @@ class FeatureTest < Minitest::Test
       request_type_string:"GET",
       event: "socialLoginB",
       operating_system_string: "Windows",
-      browser: "Chrome",
+      browser_string: "Chrome",
       resolution_string: {width: "1920", height: "1080"},
       ip_address:"63.29.38.211"
     }
@@ -200,7 +202,7 @@ class FeatureTest < Minitest::Test
       request_type_string:"GET",
       event: "socialLoginB",
       operating_system_string: "Macintosh",
-      browser: "Chrome",
+      browser_string: "Chrome",
       resolution_string: {width: "1920", height: "1280"},
       ip_address:"63.29.38.211"
     }
@@ -213,7 +215,7 @@ class FeatureTest < Minitest::Test
       request_type_string:"GET",
       event: "socialLoginB",
       operating_system_string: "Macintosh",
-      browser: "Mozilla",
+      browser_string: "Mozilla",
       resolution_string: {width: "1366", height: "768"},
       ip_address:"63.29.38.211"
     }
@@ -229,6 +231,8 @@ class FeatureTest < Minitest::Test
       resolution = TrafficSpy::Resolution.find_or_create_by(width: data[:resolution_string][:width],
                                                             height: data[:resolution_string][:height])
       operating_system = TrafficSpy::OperatingSystem.find_or_create_by(op_system: data[:operating_system_string])
+      browser = TrafficSpy::Browser.find_or_create_by(browser_name: data[:browser_string])
+      data[:browser_id] = browser.id
       data[:operating_system_id] = operating_system.id
       data[:resolution_id] = resolution.id
       data[:relative_path_id] = rel_path.id

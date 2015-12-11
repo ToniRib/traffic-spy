@@ -27,7 +27,7 @@
             %th.weighted Rank
             %th.weighted Browser
             %th.weighted Requests
-          -@app.payloads.group_count_and_order(:browser).each_with_index do |data, rank|
+          -@app.payloads.group_count_and_order_browser.each_with_index do |data, rank|
             %tr
               %td
                 = rank + 1
