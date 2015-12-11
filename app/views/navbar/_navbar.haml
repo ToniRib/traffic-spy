@@ -1,0 +1,30 @@
+%ul#dropdown1.dropdown-content
+  -TrafficSpy::Application.all.each do |app|
+    %li
+      %a.cyan-text.text-darken-2{:href => "/sources/#{app.identifier}"}
+        = app.identifier
+.navbar.weighted
+  %nav
+    .nav-wrapper.cyan.darken-2
+      %a.brand-logo{:href => "/"} TrafficSpy
+      %a.button-collapse{"data-activates" => "mobile-demo", :href => "#"}
+        %i.material-icons menu
+      %ul.right.hide-on-med-and-down
+        %li
+          %a{:href => "/"} HomePage
+        %li
+          %a{:href => "/sources"} Registered Applications
+        %li
+          %a.dropdown-button{"data-activates" => "dropdown1", :href => "#!"}
+            Jump to App
+            %i.material-icons.right arrow_drop_down
+      %ul#mobile-demo.side-nav
+        %li
+          %a{:href => "/"} Dashboard
+        %li
+          %a{:href => "/sources"} Registered App Index
+        %li.divider
+        -TrafficSpy::Application.all.each do |app|
+          %li
+            %a{:href => "/sources/#{app.identifier}"}
+              = app.identifier
