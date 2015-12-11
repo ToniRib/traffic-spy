@@ -1,0 +1,11 @@
+%tr#most_pop_browsers
+  %td
+    Most Popular Browsers:
+  %td
+    %ol#most_pop_browsers_list
+      -@urls.get_top_3(:browser).each do |referrer, count|
+        %li
+          = referrer
+          (
+          %span>= count
+          )

@@ -1,0 +1,15 @@
+.container
+
+  %h1.title-text.weighted.underline.center= @app.identifier
+
+  %h3.weighted.sub.cyan.darken-2.center= @url
+
+  %table.title-text.bordered.highlight.cyan-text.lighten-2
+    %tr
+      %th.h1 Analytic
+      %th Data
+    =haml :'application-url-statistics/_response_time_statistics'
+    =haml :'application-url-statistics/_http_verb_statistics'
+    =haml :'application-url-statistics/_reference_statistics'
+    =haml :'application-url-statistics/_operating_system_statistics'
+    =haml :'application-url-statistics/_browser_statistics'

@@ -1,0 +1,11 @@
+%tr#most_pop_os
+  %td
+    Most Popular Operating Systems:
+  %td
+    %ol#most_pop_os_list
+      -@urls.get_top_3(:operating_system).each do |referrer, count|
+        %li
+          = referrer
+          (
+          %span>= count
+          )

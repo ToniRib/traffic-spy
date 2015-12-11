@@ -27,13 +27,12 @@ module TrafficSpy
       @url = "/" + path
       @id = id
       @app = TrafficSpy::Application.find_by(identifier: id)
-      # binding.pry if path == 'beth'
       @urls = @app.payloads.matching(@url)
 
       if @urls.empty?
         haml :application_url_statistics_error
       else
-        haml :application_url_statistics
+        haml :'application-url-statistics/application_url_statistics'
       end
     end
 

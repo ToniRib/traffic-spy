@@ -1,0 +1,15 @@
+%tr#longest_response_time
+  %td
+    Longest Response Time:
+  %td
+    = @urls.max_response_time
+%tr#shortest_response_time
+  %td
+    Shortest Response Time:
+  %td
+    = @urls.min_response_time
+%tr#average_response_time
+  %td
+    Average Response Time:
+  %td
+    = @urls.avg_response_time
