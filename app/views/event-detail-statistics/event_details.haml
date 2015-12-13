@@ -1,13 +1,13 @@
 .container
   .row
-    %h1.title-text.weighted.underline.center
+    %h1.title-text.weighted.underline.center.non-dashboard-text
       = @app.identifier.capitalize
       Events Details:
   .row.center-align
-    %h3.weighted.sub.cyan.darken-2
+    %h3.weighted.sub.cyan.darken-2.non-dashboard-text
       = @event.event_name
 
-  %h3#total-request.title-text.weighted.underline
+  %h3#total-request.title-text.weighted.underline.non-dashboard-text
     Total Requests:
     = @event.total_requests
 

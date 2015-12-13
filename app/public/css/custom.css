@@ -1,7 +1,19 @@
+/*
+* Navbar
+*/
+
 nav ul a {
   font-size: 1.3rem;
   font-weight: 250;
 }
+
+.brand-logo {
+ margin-left: 20px;
+}
+
+/*
+* Dashboard
+*/
 
 .background-img {
   background-image: url("../images/TrafficSpy_Eye.jpg");
@@ -9,23 +21,40 @@ nav ul a {
   max-width: 100%;
 }
 
-.brand-logo {
- margin-left: 20px;
+.homepage-quote {
+  letter-spacing: 4px;
+  font-weight: 100;
+  margin-left: 180px;
+  margin-top: -50;
+}
+
+.underline {
+  text-decoration: underline;
+  color: D7D7D7;
+}
+
+.shadow {
+  text-shadow: 2px 2px #0097a7;
 }
 
 .title-text {
   color: #d7d7d7;
 }
 
+.homepage-header {
+  font-size: 150px;
+  font-weight: 300;
+  margin-left: 40px;
+}
+
+/*
+* Other Styles
+*/
+
 #analytics {
   text-decoration: overline;
   margin-left: -40px;
 }
-
-/*
-.card {
-  min-height: 100px;
-}*/
 
 .link-card {
   height: 80px;
@@ -39,49 +68,12 @@ nav ul a {
   margin: 0 auto;
 }
 
-@media screen and (max-width: 900px) {
-  .background-img {
-    background-position: center center;
-  }
-}
-
-.title-text{
-  color: D7D7D7;
-}
-
-.homepage-header {
-  font-size: 150px;
-  font-weight: 300;
-  margin-left: 40px;
-;}
-
 .weighted{
   font-weight: 200;
 }
 
 .sub {
   font-size: 50px;
-}
-
-.homepage-quote {
-  letter-spacing: 4px;
-  font-weight: 100;
-  margin-left: 180px;
-  margin-top: -50;
-}
-
-/*.homepage-icon {
-  color: 0097a7;
-  font-size: 50px;
-}*/
-
-.underline {
-  text-decoration: underline;
-  color: D7D7D7;
-}
-
-.shadow {
-  text-shadow: 2px 2px #0097a7;
 }
 
 .grid-margin {
@@ -92,16 +84,54 @@ nav ul a {
   background-color: D7D7D7;
 }
 
-
-/*.highlight {
-  color: #0097a7;
-}*/
-/*.smaller-text{
-  font-size: 35px;
-}*/
 /*
-.textured-img {
- background-image: url("http://eskipaper.com/images/awesome-textured-background-1.jpg");
- height: 100vh;
- max-width: 100%;
-}*/
+* Media Queries
+*/
+
+@media screen and (max-width: 972px) {
+  .homepage-header {
+    font-size: 100px;
+  }
+
+  #analytics {
+    font-size: 30px;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .homepage-header {
+    font-size: 70px;
+  }
+
+  .homepage-quote {
+    font-size: 40px;
+    margin-left: 50px;
+    margin-top: -30px;
+  }
+
+  #analytics {
+    font-size: 20px;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #analytics {
+    display: none;
+  }
+
+  .non-dashboard-text {
+    font-size: 25px;
+  }
+
+  tr {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .background-img {
+    background-position: center center;
+  }
+}
