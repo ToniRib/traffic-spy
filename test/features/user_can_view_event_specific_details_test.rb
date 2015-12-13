@@ -5,6 +5,7 @@ class UserCanViewEventSpecificDetails < FeatureTest
     register_turing_and_send_multiple_payloads
 
     visit '/sources/turing/events/socialLoginA'
+    
 
     expected = [0, 0, 1, 0, 1, 0,
                 0, 0, 0, 0, 0, 0,

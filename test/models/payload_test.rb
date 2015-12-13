@@ -531,4 +531,168 @@ class PayloadTest < ModelTest
 
     assert_equal 2, TrafficSpy::Payload.count
   end
+
+  def test_group_count_and_order_relative_path
+    register_turing_and_send_multiple_payloads
+
+    app = TrafficSpy::Application.find_by(identifier: 'turing')
+    expected = {"/blog" => 3, "/team" => 2, "/about" => 1}
+
+    assert_equal expected, app.payloads.group_count_and_order_relative_path
+  end
+
+  def test_group_count_and_order_browser
+    register_turing_and_send_multiple_payloads
+
+    app = TrafficSpy::Application.find_by(identifier: 'turing')
+    expected = {"Chrome" => 3, "Mozilla" => 1, "IE10" => 1, "Safari" => 1}
+
+    assert_equal expected, app.payloads.group_count_and_order_browser
+  end
+
+  def test_group_count_and_order_operating_system
+    register_turing_and_send_multiple_payloads
+
+    app = TrafficSpy::Application.find_by(identifier: 'turing')
+    expected = {"Macintosh" => 4, "Windows" => 2}
+
+    assert_equal expected, app.payloads.group_count_and_order_operating_system
+  end
+
+  def test_group_count_and_order_resolution
+    register_turing_and_send_multiple_payloads
+
+    app = TrafficSpy::Application.find_by(identifier: 'turing')
+
+    result = app.payloads.group_count_and_order_resolution
+
+    assert_equal 3, result[0][1]
+    assert_equal "1920 x 1280", result[0][0]
+    assert_equal 1, result[1][1]
+    assert_equal "1366 x 768", result[1][0]
+    assert_equal 1, result[2][1]
+    assert_equal "1920 x 1080", result[2][0]
+    assert_equal 1, result[3][1]
+    assert_equal "600 x 800", result[3][0]
+  end
+
+  def test_group_count_and_order_request_types
+    register_turing_and_send_multiple_payloads
+
+    app = TrafficSpy::Application.find_by(identifier: 'turing')
+    expected = {"GET" => 5, "POST" => 1}
+
+    assert_equal expected, app.payloads.group_count_and_order_request_type
+  end
+
+  def test_group_average_and_order_response_times
+    register_turing_and_send_multiple_payloads
+
+    app = TrafficSpy::Application.find_by(identifier: 'turing')
+    result = app.payloads.group_average_and_order_response_times
+
+    assert_equal "/blog", result[0][0]
+    assert_equal 55.67, result[0][1].to_f.round(2)
+    assert_equal "/team", result[1][0]
+    assert_equal 40.5, result[1][1].to_f.round(2)
+    assert_equal "/about", result[2][0]
+    assert_equal 25.0, result[2][1].to_f.round(2)
+  end
+
+  def test_path_matching_by_relative_path
+    register_turing_and_send_multiple_payloads
+
+    app = TrafficSpy::Application.find_by(identifier: 'turing')
+
+    assert_equal 6, app.payloads.count
+
+    app_blog_payloads = app.payloads.path_matching("/blog")
+    assert_equal 3, app_blog_payloads.count
+
+    app_blog_team = app.payloads.path_matching("/team")
+    assert_equal 2, app_blog_team.count
+
+    app_blog_about = app.payloads.path_matching("/about")
+    assert_equal 1, app_blog_about.count
+  end
+
+  def test_max_response_time
+    register_turing_and_send_multiple_payloads
+
+    app = TrafficSpy::Application.find_by(identifier: 'turing')
+
+    app_blog_payloads = app.payloads.path_matching("/blog")
+    assert_equal 80, app_blog_payloads.max_response_time
+
+    app_blog_team = app.payloads.path_matching("/team")
+    assert_equal 41, app_blog_team.max_response_time
+
+    app_blog_about = app.payloads.path_matching("/about")
+    assert_equal 25, app_blog_about.max_response_time
+  end
+
+  def test_min_response_time
+    register_turing_and_send_multiple_payloads
+
+    app = TrafficSpy::Application.find_by(identifier: 'turing')
+
+    app_blog_payloads = app.payloads.path_matching("/blog")
+    assert_equal 37, app_blog_payloads.min_response_time
+
+    app_blog_team = app.payloads.path_matching("/team")
+    assert_equal 40, app_blog_team.min_response_time
+
+    app_blog_about = app.payloads.path_matching("/about")
+    assert_equal 25, app_blog_about.min_response_time
+  end
+
+  def test_avg_response_time
+    register_turing_and_send_multiple_payloads
+
+    app = TrafficSpy::Application.find_by(identifier: 'turing')
+
+    app_blog_payloads = app.payloads.path_matching("/blog")
+    assert_equal 55.67, app_blog_payloads.avg_response_time
+
+    app_blog_team = app.payloads.path_matching("/team")
+    assert_equal 40.5, app_blog_team.avg_response_time
+
+    app_blog_about = app.payloads.path_matching("/about")
+    assert_equal 25, app_blog_about.avg_response_time
+  end
+
+  def test_get_top_3_relative_path
+    register_turing_and_send_multiple_payloads
+
+    app = TrafficSpy::Application.find_by(identifier: 'turing')
+    expected = [["/blog", 3], ["/team", 2], ["/about", 1]]
+
+    assert_equal expected, app.payloads.get_top_3_relative_path
+  end
+
+  def test_get_top_3_browser
+    register_turing_and_send_multiple_payloads
+
+    app = TrafficSpy::Application.find_by(identifier: 'turing')
+    expected = [["Chrome", 3], ["IE10", 1], ["Mozilla", 1]]
+
+    assert_equal expected, app.payloads.get_top_3_browser
+  end
+
+  def test_get_top_3_operating_system
+    register_turing_and_send_multiple_payloads
+
+    app = TrafficSpy::Application.find_by(identifier: 'turing')
+    expected = [["Macintosh", 4], ["Windows", 2]]
+
+    assert_equal expected, app.payloads.get_top_3_operating_system
+  end
+
+  def test_requests_by_hour
+    register_turing_and_send_multiple_payloads
+
+    app = TrafficSpy::Application.find_by(identifier: 'turing')
+
+    assert_equal 0, app.payloads.requests_by_hour(0)
+  end
 end

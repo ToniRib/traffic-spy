@@ -3,5 +3,5 @@
     HTTP Verbs:
   %td
     %ol#http_verbs_list
-      -@path.verbs.each do |verb, count|
+      -@url_payloads.group_count_and_order_request_type.each do |verb, count|
         = list_item_with_count(verb, count)

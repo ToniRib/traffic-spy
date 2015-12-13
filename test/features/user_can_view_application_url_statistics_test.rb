@@ -321,6 +321,36 @@ class UserCanViewApplicationURLStatisticsTest < FeatureTest
     end
   end
 
+  def test_user_sees_only_info_for_one_application
+    register_turing_and_send_multiple_payloads
+
+    TrafficSpy::Application.create(identifier: "jumpstartlab", root_url: "http://jumpstartlab.io")
+
+    payload_data = {
+      relative_path_string: "/blog",
+      requested_at: "2013-02-16 21:38:28 -0700",
+      responded_in: 80,
+      referred_by:"http://turing.io",
+      request_type_string:"GET",
+      event_string: "socialLoginC",
+      operating_system_string: "Macintosh",
+      browser_string: "Chrome",
+      resolution_string: {width: "1920", height: "1280"},
+      ip_address:"63.29.38.211"
+    }
+
+    app = TrafficSpy::Application.find_by(identifier: "jumpstartlab")
+    data = TrafficSpy::DataLoader.new(payload_data).find_ids
+    data[:application_id] = app.id
+    TrafficSpy::Payload.create(data)
+
+    visit '/sources/jumpstartlab/urls/blog'
+
+    within 'ol#http_verbs_list li:nth-child(1)' do
+      assert page.has_content?("GET (1)")
+    end
+  end
+
   def test_user_sees_error_message_when_path_doesnt_exist_for_identifier
     register_turing_and_send_multiple_payloads
 

@@ -3,5 +3,5 @@
     Most Popular Referrers:
   %td
     %ol#most_pop_referrers_list
-      -@path.top_3_referrers.each do |referrer, count|
+      -@url_payloads.get_top_3(:referred_by).each do |referrer, count|
         = list_item_with_count(referrer, count)

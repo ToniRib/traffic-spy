@@ -3,5 +3,5 @@
     Most Popular Operating Systems:
   %td
     %ol#most_pop_os_list
-      -@path.top_3_operating_systems.each do |referrer, count|
+      -@url_payloads.get_top_3_operating_system.each do |referrer, count|
         = list_item_with_count(referrer, count)

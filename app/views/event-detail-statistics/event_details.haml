@@ -5,10 +5,10 @@
       Events Details:
   .row.center-align
     %h3.weighted.sub.cyan.darken-2.non-dashboard-text
-      = @event.event_name
+      = @event
 
   %h3#total-request.title-text.weighted.underline.non-dashboard-text
     Total Requests:
-    = @event.total_requests
+    = @event_payloads.count
 
   = haml :'event-detail-statistics/_hourly_table'
