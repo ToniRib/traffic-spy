@@ -4,6 +4,7 @@ gem 'sinatra', require: ['sinatra/base', 'sinatra/json']
 gem 'pg'
 gem 'activerecord'
 gem 'sinatra-activerecord'
+gem 'sinatra-json'
 gem 'rake'
 gem 'haml'
 

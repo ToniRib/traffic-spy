@@ -1,13 +1,11 @@
-require 'sinatra/json'
-
 module TrafficSpy
   class Server < Sinatra::Base
     get '/' do
       haml :homepage
     end
 
-    get '/test_page.json' do
-      json :test_page
+    get '/sources.json' do
+      json :registered_applications => TrafficSpy::Application.all.pluck(:identifier)
     end
 
     get '/sources' do
@@ -29,6 +27,18 @@ module TrafficSpy
       body response_body
     end
 
+    get '/sources/:id/urls/:path.json' do |id, path|
+      @app = TrafficSpy::Application.find_by(identifier: id)
+      @path = @app.relative_paths.find_by(path: "/" + path)
+      calculator = TrafficSpy::URLStatsJson.new(id, path)
+
+      if @path.nil?
+        json identifier: id, path: "/" + path, message: "URL has not been requested"
+      else
+        json calculator.generate_statistics
+      end
+    end
+
     get '/sources/:id/urls/:path' do |id, path|
       @app = TrafficSpy::Application.find_by(identifier: id)
       @path = @app.relative_paths.find_by(path: "/" + path)
@@ -37,6 +47,19 @@ module TrafficSpy
         haml :'error-messages/application_url_statistics_error', locals: {path: path}
       else
         haml :'application-url-statistics/application_url_statistics'
+      end
+    end
+
+    get '/sources/:id.json' do |id|
+      @app = TrafficSpy::Application.find_by(identifier: id)
+      calculator = TrafficSpy::AppStatsJson.new(id)
+
+      if @app.nil?
+        json identifier: id, message: "Identifier has not been registered"
+      elsif @app.payloads.to_a.empty?
+        json identifier: id, message: "No Payload data has been received for this source"
+      else
+        json calculator.generate_statistics
       end
     end
 
