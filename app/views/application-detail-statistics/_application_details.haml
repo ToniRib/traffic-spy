@@ -13,8 +13,7 @@
               %td
                 = rank + 1
               %td
-                %a.cyan-text.text-lighten-3.card-link{:href => "/sources/#{@app.identifier}/urls#{data[0]}"}
-                  = data[0]
+                = link_to_url(@app.identifier, data[0])
               %td.request-count
                 = data[1]
 
@@ -89,7 +88,7 @@
               %td
                 = rank + 1
               %td
-                = data[0]
+                = link_to_url(@app.identifier, data[0])
               %td.request-count
                 = data[1].to_f.round(2)
 

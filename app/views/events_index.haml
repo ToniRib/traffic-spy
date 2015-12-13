@@ -4,9 +4,6 @@
     Events Index
 
 %ol.center
-  -@app.events.list_of_events.each do |k, v|
+  -@app.events.list_of_events.each do |event, count|
     %li
-      %a{:href => "/sources/#{@app.identifier}/events/#{k}"}
-        %h3.title-text.btn-large.cyan.darken-2.waves-effect.waves-light.shadow.center
-          = k
-          = v
+      = link_to_event(@app.identifier, event, count)

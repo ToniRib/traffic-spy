@@ -4,8 +4,4 @@
   %td
     %ol#most_pop_browsers_list
       -@path.top_3_browsers.each do |referrer, count|
-        %li
-          = referrer
-          (
-          %span>= count
-          )
+        = list_item_with_count(referrer, count)

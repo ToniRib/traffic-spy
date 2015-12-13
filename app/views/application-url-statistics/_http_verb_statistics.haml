@@ -4,8 +4,4 @@
   %td
     %ol#http_verbs_list
       -@path.verbs.each do |verb, count|
-        %li
-          = verb
-          (
-          %span>= count
-          )
+        = list_item_with_count(verb, count)

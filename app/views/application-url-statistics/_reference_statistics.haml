@@ -4,8 +4,4 @@
   %td
     %ol#most_pop_referrers_list
       -@path.top_3_referrers.each do |referrer, count|
-        %li
-          = referrer
-          (
-          %span>= count
-          )
+        = list_item_with_count(referrer, count)

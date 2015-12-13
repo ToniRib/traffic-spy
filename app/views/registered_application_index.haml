@@ -1,11 +1,8 @@
 .container
   .row
-    .col.l12.m12.s12 
+    .col.l12.m12.s12
       %h1.title-text.weighted.underline.center Registered apps
       %ul.center
         -@apps.each do |app|
           %li
-            %a{:href => "/sources/#{app.identifier}"}
-              %h3.title-text.btn-large.cyan.darken-2.waves-effect.waves-light.shadow.center
-                = app.identifier
-    
+            = link_to_application(app.identifier)

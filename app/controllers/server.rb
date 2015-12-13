@@ -31,8 +31,7 @@ module TrafficSpy
 
     get '/sources/:id/urls/:path' do |id, path|
       @app = TrafficSpy::Application.find_by(identifier: id)
-      @path_name = "/" + path
-      @path = @app.relative_paths.find_by(path: @path_name)
+      @path = @app.relative_paths.find_by(path: "/" + path)
 
       if @path.nil?
         haml :'error-messages/application_url_statistics_error', locals: {path: path}
@@ -76,6 +75,28 @@ module TrafficSpy
 
     not_found do
       haml :'error-messages/error'
+    end
+
+    use Rack::Auth::Basic, "Enter username & password to view TrafficSpy Dashboard" do |username, password|
+      username == 'turing' && password == 'secret'
+    end
+
+    helpers do
+      def link_to_url(app_name, path)
+        "<a href='/sources/#{app_name}/urls#{path}' class='cyan-text text-lighten-3 card-link'> #{path}"
+      end
+
+      def link_to_application(app_name)
+        "<a href='/sources/#{app_name}'><h3 class='title-text btn-large cyan darken-2 waves-effect waves-light shadow center'>#{app_name}</h3></a>"
+      end
+
+      def link_to_event(app_name, event, count)
+        "<a href='/sources/#{app_name}/events/#{event}'><h3 class='title-text btn-large cyan darken-2 waves-effect waves-light shadow center'>#{event} - #{count}</h3></a>"
+      end
+
+      def list_item_with_count(item, count)
+        "<li>#{item} (#{count})</li>"
+      end
     end
   end
 end
