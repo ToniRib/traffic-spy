@@ -4,12 +4,13 @@
 
   %h3.weighted.sub.cyan.darken-2.center= @path.path
 
-  %table.title-text.bordered.highlight.cyan-text.lighten-2
-    %tr
-      %th.h1 Analytic
-      %th Data
-    =haml :'application-url-statistics/_response_time_statistics'
-    =haml :'application-url-statistics/_http_verb_statistics'
-    =haml :'application-url-statistics/_reference_statistics'
-    =haml :'application-url-statistics/_operating_system_statistics'
-    =haml :'application-url-statistics/_browser_statistics'
+  / %body{:onload => "JavaScript:AutoRefresh(5000);"}
+    %table.title-text.bordered.highlight.cyan-text.lighten-2
+      %tr
+        %th.h1 Analytic
+        %th Data
+      =haml :'application-url-statistics/_response_time_statistics'
+      =haml :'application-url-statistics/_http_verb_statistics'
+      =haml :'application-url-statistics/_reference_statistics'
+      =haml :'application-url-statistics/_operating_system_statistics'
+      =haml :'application-url-statistics/_browser_statistics'

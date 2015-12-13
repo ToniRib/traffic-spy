@@ -5,4 +5,5 @@
         = @app.identifier
       %h3.title-text.center.weighted.sub
         statistics
+/ %body{:onload => "JavaScript:AutoRefresh(5000);"}
   =haml :'application-detail-statistics/_application_details'
