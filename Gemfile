@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'sinatra', require: 'sinatra/base', require: 'sinatra/json'
+gem 'sinatra', require: ['sinatra/base', 'sinatra/json']
 gem 'pg'
 gem 'activerecord'
 gem 'sinatra-activerecord'
