@@ -75,6 +75,16 @@ module TrafficSpy
       end
     end
 
+    get '/sources/:id/events.json' do |id|
+      @app = TrafficSpy::Application.find_by(identifier: id)
+
+      if @app.payloads.to_a.empty?
+        json identifier: id, message: "No Payload data has been received for this source"
+      else
+        json identifier: id, events_index: @app.events.pluck(:event_name)
+      end
+    end
+
     get '/sources/:id/events' do |id|
       @app = TrafficSpy::Application.find_by(identifier: id)
 
@@ -82,6 +92,17 @@ module TrafficSpy
         haml :'error-messages/no_payloads'
       else
         haml :events_index
+      end
+    end
+
+    get '/sources/:id/events/:event.json' do |id, event|
+      @app = TrafficSpy::Application.find_by(identifier: id)
+      @event = @app.events.find_by(event_name: event)
+
+      if @event.nil?
+        json identifier: id, event: event, message: "#{event} has not been defined for this application"
+      else
+        haml :'event-detail-statistics/event_details'
       end
     end
 
