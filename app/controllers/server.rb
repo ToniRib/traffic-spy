@@ -1,10 +1,12 @@
+require 'sinatra/json'
+
 module TrafficSpy
   class Server < Sinatra::Base
     get '/' do
       haml :homepage
     end
 
-    get '/test_page' do
+    get '/test_page.json' do
       json :test_page
     end
 
