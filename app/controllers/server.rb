@@ -4,6 +4,10 @@ module TrafficSpy
       haml :homepage
     end
 
+    get '/test_page' do
+      json :test_page
+    end
+
     get '/sources' do
       @apps = TrafficSpy::Application.all
       haml :registered_application_index
