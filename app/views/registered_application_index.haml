@@ -2,7 +2,7 @@
   .row
     .col.l12.m12.s12
       %h1.title-text.weighted.underline.center.non-dashboard-text Registered apps
-      %ul.center
+      %ul.center#registered-app-index
         -@apps.each do |app|
           %li
             = link_to_application(app.identifier)

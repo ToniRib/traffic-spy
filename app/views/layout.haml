@@ -1,5 +1,8 @@
 %html
   %head
+    %script{:type => "text/JavaScript"}
+      function AutoRefresh( t ) {
+      setTimeout("location.reload(true);", t);}
     %link{:href => "http://fonts.googleapis.com/icon?family=Material+Icons", :rel => "stylesheet"}
     %link{:href => "/css/materialize.min.css", :type => "text/css", :rel => "stylesheet"}
     %link{:href => "https://fonts.googleapis.com/css?family=Indie+Flower", :rel => 'stylesheet', :type =>'text/css'}
@@ -8,6 +11,7 @@
     %link{:href => 'https://fonts.googleapis.com/css?family=Questrial', :rel => 'stylesheet', :type => 'text/css'}
     %title TrafficSpy Analytics
   %body.black
+  %body{:onload => "JavaScript:AutoRefresh(10000);"}
 
   = haml :'nav-bar/_nav_bar'
 

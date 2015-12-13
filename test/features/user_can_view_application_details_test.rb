@@ -72,8 +72,6 @@ class UserCanViewApplicationDetailsTest < FeatureTest
 
     visit '/sources/turing'
 
-    # save_and_open_page
-
     within 'table#screen-resolution tr:nth-child(2)' do
       assert page.has_content?(1920)
       assert page.has_content?(1280)

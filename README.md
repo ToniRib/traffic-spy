@@ -7,7 +7,7 @@ This application was created by [Beth Secor](https://github.com/bethsecor), [Ste
 
 ### Overview
 
-stuff here.
+TrafficSpy is an application that works similar to Google Analytics, tracking data for registered applications. The data from this applications is sent to our server using the `curl` command from the terminal (see below). The user can then view analytical data for a registered application via our website.
 
 ### Project Cloning & Setup
 
@@ -79,19 +79,27 @@ Also includes a link to the event index page.
 
 __Located at:__ `http://localhost:9393/sources/APPIDENTIFIER/urls/RELATIVEPATH`
 
-info here
+Displays the following information for an individual application and specific path:
+
+- Longest response time (ms)
+- Shortest response time (ms)
+- Average response time (ms)
+- HTTP verbs
+- Most popular referrers
+- Most popular operating systems
+- Most popular browsers
 
 #### Application Events Index
 
 __Located at:__ `http://localhost:9393/sources/APPIDENTIFIER/events`
 
-info here
+Has a list of all of the received events for a specific application, each of which is a link to the corresponding event details page.
 
 #### Application Events Details
 
 __Located at:__ `http://localhost:9393/sources/APPIDENTIFIER/events/EVENTNAME`
 
-info here
+Displays the total number of requests for that event and an hour by hour breakdown of when the requests were received.
 
 ### Testing
 
@@ -101,19 +109,19 @@ The test suite can be run from the terminal by running the command `rake test` f
 
 The following ruby gems are used in this project:
 
-- 'sinatra'
-- 'pg'
-- 'activerecord'
-- 'sinatra-activerecord'
-- 'rake'
-- 'haml'
-- 'shotgun'
-- 'minitest'
-- 'tux'
-- 'capybara'
-- 'launchy'
-- 'rack-test'
-- 'database_cleaner'
-- 'json'
-- 'useragent'
-- 'uri'
+- sinatra
+- pg
+- activerecord
+- sinatra-activerecord
+- rake
+- haml
+- shotgun
+- minitest
+- tux
+- capybara
+- launchy
+- rack-test
+- database_cleaner
+- json
+- useragent
+- uri

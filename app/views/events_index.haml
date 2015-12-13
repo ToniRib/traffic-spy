@@ -5,5 +5,5 @@
 
 %ol.center
   -@app.events.list_of_events.each do |event, count|
-    %li
+    %li#event-index-links
       = link_to_event(@app.identifier, event, count)
