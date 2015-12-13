@@ -5,8 +5,10 @@ gem 'pg'
 gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'sinatra-json'
+gem 'sinatra-reloader'
 gem 'rake'
 gem 'haml'
+gem 'thin'
 
 group :development, :test do
   gem 'shotgun'

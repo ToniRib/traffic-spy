@@ -1,8 +1,5 @@
 %html
   %head
-    %script{:type => "text/JavaScript"}
-      function AutoRefresh( t ) {
-      setTimeout("location.reload(true);", t);}
     %link{:href => "http://fonts.googleapis.com/icon?family=Material+Icons", :rel => "stylesheet"}
     %link{:href => "/css/materialize.min.css", :type => "text/css", :rel => "stylesheet"}
     %link{:href => "https://fonts.googleapis.com/css?family=Indie+Flower", :rel => 'stylesheet', :type =>'text/css'}
@@ -11,11 +8,11 @@
     %link{:href => 'https://fonts.googleapis.com/css?family=Questrial', :rel => 'stylesheet', :type => 'text/css'}
     %title TrafficSpy Analytics
   %body.black
-  %body{:onload => "JavaScript:AutoRefresh(10000);"}
 
   = haml :'nav-bar/_nav_bar'
 
-  = yield
+  %div#yielder
+    = yield
 
   %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"}
   %script{:type => "text/javascript", :src =>"https://code.jquery.com/jquery-2.1.1.min.js"}
@@ -24,3 +21,13 @@
     $( document ).ready(function(){
       $(".button-collapse").sideNav();
     });
+  :javascript
+    $(getUpdate);
+    function getUpdate(){
+      console.log(top.location.pathname);
+
+      if (top.location.pathname === '/sources') {
+        $("#yielder").load("/sources");
+        setTimeout(getUpdate,1000);
+      }
+    }

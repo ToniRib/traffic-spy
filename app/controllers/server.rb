@@ -10,7 +10,7 @@ module TrafficSpy
 
     get '/sources' do
       @apps = TrafficSpy::Application.all
-      haml :registered_application_index
+      haml :registered_application_index, :layout => (request.xhr? ? false : :layout)
     end
 
     post '/sources' do
