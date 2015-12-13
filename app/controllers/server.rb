@@ -30,12 +30,12 @@ module TrafficSpy
     get '/sources/:id/urls/:path.json' do |id, path|
       @app = TrafficSpy::Application.find_by(identifier: id)
       @path = @app.relative_paths.find_by(path: "/" + path)
-      calculator = TrafficSpy::URLStatsJson.new(id, path)
+      url_stats_calculator = TrafficSpy::URLStatsJson.new(id, path)
 
       if @path.nil?
         json identifier: id, path: "/" + path, message: "URL has not been requested"
       else
-        json calculator.generate_statistics
+        json url_stats_calculator.generate_statistics
       end
     end
 
@@ -52,14 +52,14 @@ module TrafficSpy
 
     get '/sources/:id.json' do |id|
       @app = TrafficSpy::Application.find_by(identifier: id)
-      calculator = TrafficSpy::AppStatsJson.new(id)
+      app_stats_calculator = TrafficSpy::AppStatsJson.new(id)
 
       if @app.nil?
         json identifier: id, message: "Identifier has not been registered"
       elsif @app.payloads.to_a.empty?
         json identifier: id, message: "No Payload data has been received for this source"
       else
-        json calculator.generate_statistics
+        json app_stats_calculator.generate_statistics
       end
     end
 
@@ -98,11 +98,12 @@ module TrafficSpy
     get '/sources/:id/events/:event.json' do |id, event|
       @app = TrafficSpy::Application.find_by(identifier: id)
       @event = @app.events.find_by(event_name: event)
+      app_stats_calculator = TrafficSpy::EventStatsJson.new(id, event)
 
       if @event.nil?
         json identifier: id, event: event, message: "#{event} has not been defined for this application"
       else
-        haml :'event-detail-statistics/event_details'
+        json app_stats_calculator.generate_statistics
       end
     end
 
