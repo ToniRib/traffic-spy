@@ -73,6 +73,10 @@ module TrafficSpy
       haml :'error-messages/error', :layout => (request.xhr? ? false : :layout)
     end
 
+    use Rack::Auth::Basic, "Enter username & password to view TrafficSpy Dashboard" do |username, password|
+      username == 'turing' && password == 'secret'
+    end
+
     helpers do
       def link_to_url(app_name, path)
         "<a href='/sources/#{app_name}/urls#{path}' class='cyan-text text-lighten-3 card-link'> #{path}"
